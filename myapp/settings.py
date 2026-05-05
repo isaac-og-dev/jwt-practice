@@ -114,7 +114,8 @@ REST_FRAMEWORK = {
    ),
    'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated', 
-)
+    ),
+    'EXCEPTION_HANDLER': 'utils.exceptions.custom_exception_handler',
 }
 
 from datetime import timedelta

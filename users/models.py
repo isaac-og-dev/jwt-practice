@@ -1,8 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
-
-
 class UserManager(BaseUserManager):
     def create_user(self, email, name, password=None, **extra_fields):
         if not email:
@@ -46,3 +44,14 @@ class User(AbstractBaseUser):
     class Meta:
         managed = True
         db_table = 'users'
+
+class Teacher(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='teacher_profile')
+    cellphone = models.CharField(max_length=10, blank=False, null=False, unique=True)
+    specialization = models.CharField(max_length=100, blank=True, null=True)
+    contract_date = models.DateField(blank=True, null=True)
+    nss = models.CharField(max_length=11, blank=True, null=True, unique=True) 
+    class Meta:
+        managed = True
+        db_table = 'teachers'
